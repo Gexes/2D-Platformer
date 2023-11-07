@@ -5,35 +5,35 @@ using UnityEngine.SceneManagement; //importing SceneManagement library
 
 public class PlayerController : MonoBehaviour
 {
+    //Movement variable
+    Rigidbody2D rb;//creates reference for rigibody beause jump requires physics
+    public float jumpForce;// the force that will be added to the vertical component of player's velocity
     public float speed = 0.5f;
-    public bool hasKey = false;
 
-    public GameObject key;
 
     public static PlayerController instance; //creating an object of the class to be findable
+
+    //Ground Check variables
+    public LayerMask groundLayer;
+    public Transform groundCheck;
+    public bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (instance != null) //check if instance is in the scene
+        rb = GetComponent<Rigidbody2D>();
         {
-            Destroy(gameObject);
-            return;
+
         }
-        instance = this;
-        GameObject.DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
+        isGrounded =
         Vector3 newPosition = transform.position;
-
-        if (Input.GetKey("w"))
-        {
-            //player moves up
-            newPosition.y += speed;
-        }
+        Vector3 newScale = transform.localScale;
+        float currentScale = Mathf.Abs(transform.localScale.x);
 
         if (Input.GetKey("s"))
         {
@@ -45,44 +45,22 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey("a"))
         {
             newPosition.x -= speed;
+            newScale.x = -currentScale;
         }
 
         //player moves right
         if (Input.GetKey("d"))
         {
             newPosition.x += speed;
+            newScale.x = currentScale;
         }
 
         transform.position = newPosition;
-    }
+        transform.localScale = newScale;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag.Equals("door"))
+        if (Input.GetKey("w") || Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("hit");
-            SceneManager.LoadScene(1); //access SceneManager class for LoadScene function
-        }
-
-        if (collision.gameObject.tag.Equals("key"))
-        {
-            Debug.Log("obtained key");
-            //key.SetActive(false); //key disappears
-            hasKey = true; //player has the key now
-        }
-
-        //write code for exiting second scene and go back to first scene
-        if (collision.gameObject.tag.Equals("exit"))
-        {
-            Debug.Log("hit");
-            SceneManager.LoadScene(0);
-        }
-
-        if (collision.gameObject.tag.Equals("end") && hasKey == true) //needs to satisfy both
-                                                                      //conditions to enter the end door
-        {
-            Debug.Log("hit");
-            SceneManager.LoadScene(2);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
 }
