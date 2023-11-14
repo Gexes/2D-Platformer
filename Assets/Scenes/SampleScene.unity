@@ -133,9 +133,10 @@ GameObject:
   m_Component:
   - component: {fileID: 440359679}
   - component: {fileID: 440359678}
-  - component: {fileID: 440359681}
   - component: {fileID: 440359680}
   - component: {fileID: 440359682}
+  - component: {fileID: 440359683}
+  - component: {fileID: 440359684}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -228,25 +229,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!114 &440359681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440359677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2667838a3636de642bae851f693b9d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForce: 2
-  speed: 0.009
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  groundCheck: {fileID: 0}
-  isGrounded: 0
 --- !u!50 &440359682
 Rigidbody2D:
   serializedVersion: 4
@@ -268,6 +250,46 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &440359683
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440359677}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04d9fe480df56ad499d848b7ac6b8121, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &440359684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440359677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2667838a3636de642bae851f693b9d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moving: 0
+  jumpForce: 1
+  speed: 0.001
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheck: {fileID: 1757960325}
+  isGrounded: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +521,11 @@ Transform:
   m_Father: {fileID: 440359679}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1757960325 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7501583241703647413, guid: 2bffe134b0b8cbf42b41dbe902b4ac7f, type: 3}
+  m_PrefabInstance: {fileID: 2544650384389266162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1842318395606376521
 PrefabInstance:
   m_ObjectHideFlags: 0
