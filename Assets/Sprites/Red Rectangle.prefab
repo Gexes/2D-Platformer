@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2975316490164639347}
   - component: {fileID: 7122188350859268356}
   - component: {fileID: 557401789016402035}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Red Rectangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
